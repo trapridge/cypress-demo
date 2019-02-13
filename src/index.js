@@ -1,12 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+// @flow
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import React from 'react'
+import { render } from 'react-dom'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import type { Action } from './actions'
+import App from './components/App'
+import rootReducer from './reducers'
+import { unregister } from './serviceWorker'
+import './index.css'
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const store = createStore<typeof rootReducer, Action, _>(rootReducer)
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  // $FlowFixMe
+  document.getElementById('root')
+)
+
+unregister()
