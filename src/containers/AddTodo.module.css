@@ -1,12 +1,31 @@
+.container {
+    margin-top: 20px;
+}
+
 .input {
-    background-color: lightskyblue;
-    width: 100%;
+    /*background-color: white;*/
+    width: 80%;
     height: 30px;
     border: 0;
-    outline: 0;
-    text-align: center;
+    outline: 1px solid black;
+    /*text-align: center;*/
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    padding-left: 10px;
 }
 
 .input:focus {
-    outline: 5px solid deepskyblue;
+    outline: 3px solid black;
+}
+
+.button {
+    /*background-color: orangered;*/
+    display: inline-block;
+    border: 3px solid orangered;
+    outline: 0;
+    height: 34px;
+    vertical-align: middle;
+    margin-left: 5px;
+    font-size: 18px;
 }

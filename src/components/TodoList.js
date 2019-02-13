@@ -9,7 +9,8 @@ export type Props = {
   todos: TodoType[],
   toggleTodo: TodoType => *,
   fetchAllTodos: () => *,
-  isLoading: boolean,
+  isFetching: boolean,
+  hasError: boolean,
 }
 
 class TodoList extends Component<Props> {
@@ -18,12 +19,14 @@ class TodoList extends Component<Props> {
   }
 
   render(): Element<'ul'> {
-    const { todos, toggleTodo, isLoading } = this.props
+    const { todos, toggleTodo, isFetching, hasError } = this.props
 
     return (
       <ul className={styles.list}>
-        {isLoading ? (
-          <li>Loading todos...</li>
+        {isFetching && <li id="loading-indicator">Loading todos...</li>}
+        {hasError && <li id="error-indicator">Cannot load todos...</li>}
+        {!isFetching && !hasError && todos.length === 0 ? (
+          <li id="no-todos-indicator">No todos yet</li>
         ) : (
           todos.map(todo => (
             <Todo key={todo.id} {...todo} onClick={() => toggleTodo(todo)} />

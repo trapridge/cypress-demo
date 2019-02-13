@@ -2,6 +2,7 @@
 
 import React, { type Node } from 'react'
 import { setVisibilityFilter } from '../actions'
+import styles from './Link.module.css'
 
 export type Props = {
   active: boolean,
@@ -10,13 +11,7 @@ export type Props = {
 }
 
 const Link = ({ active, children, onClick }: Props) => (
-  <button
-    onClick={onClick}
-    disabled={active}
-    style={{
-      marginLeft: '4px',
-    }}
-  >
+  <button onClick={onClick} disabled={active} className={styles.button}>
     {children}
   </button>
 )

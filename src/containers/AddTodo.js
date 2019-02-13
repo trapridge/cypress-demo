@@ -6,7 +6,7 @@ import { addTodo } from '../actions'
 import styles from './AddTodo.module.css'
 
 type DispatchProps = {
-  addTodo: *
+  addTodo: *,
 }
 
 type Props = {| ...$Exact<DispatchProps> |}
@@ -15,7 +15,7 @@ const AddTodo = ({ addTodo }: Props) => {
   let input: ?HTMLInputElement
 
   return (
-    <div>
+    <div className={styles.container}>
       <form
         onSubmit={e => {
           e.preventDefault()
@@ -33,14 +33,19 @@ const AddTodo = ({ addTodo }: Props) => {
           className={styles.input}
           ref={node => (input = node)}
         />
-        <button type="submit">Add Todo</button>
+        <button className={styles.button} type="submit">
+          Add
+        </button>
       </form>
     </div>
   )
 }
 
 const mapDispatchToProps = dispatch => ({
-  addTodo: todo => dispatch(addTodo(todo))
+  addTodo: todo => dispatch(addTodo(todo)),
 })
 
-export default connect<Props, {}, _, _, _, _>(null, mapDispatchToProps)(AddTodo)
+export default connect<Props, {}, _, _, _, _>(
+  null,
+  mapDispatchToProps
+)(AddTodo)

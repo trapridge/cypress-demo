@@ -1,0 +1,21 @@
+.button {
+    display: inline-block;
+    border: 3px solid black;
+    outline: 0;
+    height: 34px;
+    vertical-align: middle;
+    margin-left: 5px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.button:disabled {
+    display: inline-block;
+    border: 3px solid black;
+    outline: 0;
+    height: 34px;
+    vertical-align: middle;
+    margin-left: 5px;
+    font-size: 18px;
+    text-decoration: underline;
+}
