@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cypress": "^3.1.5",
     "flow-bin": "^0.92.1",
     "flow-typed": "^2.5.1",
     "react": "^16.8.1",
@@ -19,8 +20,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "flow": "flow",
-    "pretty": "prettier --no-semi --single-quote --trailing-comma es5 --write \"{src,server/src}/**/*.js\"",
-    "server": "node server/src"
+    "pretty": "prettier --no-semi --single-quote --trailing-comma es5 --write \"{src,server/src,cypress/integration}/**/*.js\"",
+    "server": "node server/src",
+    "cypress": "cypress open"
   },
   "eslintConfig": {
     "extends": "react-app"

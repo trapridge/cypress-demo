@@ -22,8 +22,7 @@ const mapStateToProps = state => ({
   todos: getVisibleTodos(state.todos.todos, state.visibilityFilter),
   isFetching: state.todos.meta === 'fetching',
   hasError:
-    state.todos.meta === 'fetchError' ||
-    state.todos.meta === 'addError'
+    state.todos.meta === 'fetchError' || state.todos.meta === 'addError',
 })
 
 const mapDispatchToProps = dispatch => ({
