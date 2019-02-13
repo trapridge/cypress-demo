@@ -1,7 +1,7 @@
 // @flow
 
 import { connect } from 'react-redux'
-import { toggleTodo } from '../actions'
+import { fetchAllTodos, toggleTodo } from '../actions'
 import TodoList, { type Props } from '../components/TodoList'
 import { VisibilityFilters } from '../actions'
 
@@ -19,11 +19,13 @@ const getVisibleTodos = (todos, filter) => {
 }
 
 const mapStateToProps = state => ({
-  todos: getVisibleTodos(state.todos, state.visibilityFilter),
+  todos: getVisibleTodos(state.todos.todos, state.visibilityFilter),
+  isLoading: state.todos.meta === 'loading',
 })
 
 const mapDispatchToProps = dispatch => ({
-  toggleTodo: id => dispatch(toggleTodo(id)),
+  toggleTodo: todo => dispatch(toggleTodo(todo)),
+  fetchAllTodos: () => dispatch(fetchAllTodos()),
 })
 
 export default connect<$Exact<Props>, {||}, _, _, _, _>(

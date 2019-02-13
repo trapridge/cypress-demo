@@ -2,15 +2,16 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { type Dispatch } from 'redux'
-import { addTodo, type AddTodoAction } from '../actions'
-import styles from './AddTodo.module.css';
+import { addTodo } from '../actions'
+import styles from './AddTodo.module.css'
 
-type Props = {
-  dispatch: Dispatch<AddTodoAction>,
+type DispatchProps = {
+  addTodo: *
 }
 
-const AddTodo = ({ dispatch }: Props) => {
+type Props = {| ...$Exact<DispatchProps> |}
+
+const AddTodo = ({ addTodo }: Props) => {
   let input: ?HTMLInputElement
 
   return (
@@ -22,16 +23,24 @@ const AddTodo = ({ dispatch }: Props) => {
             if (!input.value.trim()) {
               return
             }
-            dispatch(addTodo(input.value))
+            addTodo({ text: input.value, completed: false })
             input.value = ''
           }
         }}
       >
-        <input placeholder="Type todo..." className={styles.input} ref={node => (input = node)} />
+        <input
+          placeholder="Type todo..."
+          className={styles.input}
+          ref={node => (input = node)}
+        />
         <button type="submit">Add Todo</button>
       </form>
     </div>
   )
 }
 
-export default connect<Props, {}, Props, _, _, _>()(AddTodo)
+const mapDispatchToProps = dispatch => ({
+  addTodo: todo => dispatch(addTodo(todo))
+})
+
+export default connect<Props, {}, _, _, _, _>(null, mapDispatchToProps)(AddTodo)

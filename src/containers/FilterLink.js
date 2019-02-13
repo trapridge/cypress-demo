@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch, ownProps: OwnProps) => ({
 
 export default connect<
   {| ...$Exact<Props>, ...$Exact<OwnProps> |},
-  {| ...$Exact<OwnProps>, ...$Exact<$PropertyType<Props, 'children'>>|},
+  {| ...$Exact<OwnProps>, ...$Exact<$PropertyType<Props, 'children'>> |},
   _,
   _,
   _,

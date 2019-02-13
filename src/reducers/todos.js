@@ -1,31 +1,78 @@
 // @flow
 
-import type { AddTodoAction, ToggleTodoAction } from '../actions'
+import type { Action, Todo } from '../actions'
 
-export type State = Array<{|
-  +id: number,
-  +text: string,
-  +completed: boolean,
-|}>
+export type State = {
+  +todos: Todo[],
+  +meta:
+    | 'fetching'
+    | 'fetchError'
+    | 'adding'
+    | 'addError'
+    | 'toggling'
+    | 'toggleError'
+    | void,
+}
 
 const todos = (
-  state: State = [],
-  action: AddTodoAction | ToggleTodoAction
+  state: State = { todos: [], meta: undefined },
+  action: Action
 ): State => {
   switch (action.type) {
-    case 'ADD_TODO':
-      return [
-        {
-          id: action.id,
-          text: action.text,
-          completed: false,
-        },
-        ...state
-      ]
-    case 'TOGGLE_TODO':
-      return state.map(todo =>
-        todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
-      )
+    case 'FETCH_ALL_REQUEST':
+      return {
+        ...state,
+        meta: 'fetching',
+      }
+    case 'FETCH_ALL_SUCCESS':
+      return {
+        ...state,
+        todos: action.payload,
+        meta: undefined,
+      }
+    case 'FETCH_ALL_FAILURE':
+      return {
+        ...state,
+        meta: 'fetchError',
+      }
+    case 'ADD_REQUEST':
+      return {
+        ...state,
+        meta: 'adding',
+      }
+    case 'ADD_SUCCESS':
+      return {
+        ...state,
+        todos: action.payload,
+        meta: undefined,
+      }
+    case 'ADD_FAILURE':
+      return {
+        ...state,
+        meta: 'addError',
+      }
+    case 'TOGGLE_REQUEST':
+      return {
+        ...state,
+        meta: 'toggling',
+      }
+    case 'TOGGLE_SUCCESS':
+      return {
+        ...state,
+        todos: state.todos.map(todo =>
+          // $FlowFixMe
+          action.payload && todo.id === action.payload.id
+            ? // $FlowFixMe
+              action.payload
+            : todo
+        ),
+        meta: undefined,
+      }
+    case 'TOGGLE_FAILURE':
+      return {
+        ...state,
+        meta: 'toggleError',
+      }
     default:
       return state
   }
