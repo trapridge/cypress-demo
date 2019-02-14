@@ -29,11 +29,12 @@ const AddTodo = ({ addTodo }: Props) => {
         }}
       >
         <input
+          id="input-field"
           placeholder="Type todo..."
           className={styles.input}
           ref={node => (input = node)}
         />
-        <button className={styles.button} type="submit">
+        <button id="add-button" className={styles.button} type="submit">
           Add
         </button>
       </form>

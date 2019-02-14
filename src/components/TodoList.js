@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component, type Element } from 'react'
-import { toggleTodo, type Todo as TodoType } from '../actions'
+import { type Todo as TodoType } from '../actions'
 import Todo from './Todo'
 import styles from './TodoList.module.css'
 
@@ -22,7 +22,7 @@ class TodoList extends Component<Props> {
     const { todos, toggleTodo, isFetching, hasError } = this.props
 
     return (
-      <ul className={styles.list}>
+      <ul id="todos-list" className={styles.list}>
         {isFetching && <li id="loading-indicator">Loading todos...</li>}
         {hasError && <li id="error-indicator">Cannot load todos...</li>}
         {!isFetching && !hasError && todos.length === 0 ? (

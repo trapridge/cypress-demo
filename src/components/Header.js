@@ -6,9 +6,15 @@ import { VisibilityFilters } from '../actions'
 
 const Header = () => (
   <div>
-    <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
-    <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
-    <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
+    <FilterLink id="filter-all" filter={VisibilityFilters.SHOW_ALL}>
+      All
+    </FilterLink>
+    <FilterLink id="filter-active" filter={VisibilityFilters.SHOW_ACTIVE}>
+      Active
+    </FilterLink>
+    <FilterLink id="filter-completed" filter={VisibilityFilters.SHOW_COMPLETED}>
+      Completed
+    </FilterLink>
   </div>
 )
 

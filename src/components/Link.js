@@ -8,10 +8,11 @@ export type Props = {
   active: boolean,
   children: Node,
   onClick: typeof setVisibilityFilter,
+  id: string,
 }
 
-const Link = ({ active, children, onClick }: Props) => (
-  <button onClick={onClick} disabled={active} className={styles.button}>
+const Link = ({ active, children, onClick, id }: Props) => (
+  <button id={id} onClick={onClick} disabled={active} className={styles.button}>
     {children}
   </button>
 )
