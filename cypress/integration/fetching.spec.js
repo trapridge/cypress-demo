@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-describe('fetching', () => {
+describe('fetching todos', () => {
   beforeEach(() => {
     cy.server()
   })
@@ -14,7 +14,7 @@ describe('fetching', () => {
           response: [],
           status: 200,
         }).as('fetchTodos')
-        cy.goTo('/');
+        cy.goTo('/')
         cy.wait('@fetchTodos')
       })
 
@@ -31,7 +31,7 @@ describe('fetching', () => {
           response: [],
           status: 404,
         }).as('fetchTodos')
-        cy.goTo('/');
+        cy.goTo('/')
         cy.wait('@fetchTodos')
       })
 
@@ -45,10 +45,13 @@ describe('fetching', () => {
         cy.route({
           url: '/api/todos',
           method: 'GET',
-          response: [{ id: '0', text: 'text', completed: false }, { id: '1', text: 'text2', completed: true }],
+          response: [
+            { id: '0', text: 'text', completed: false },
+            { id: '1', text: 'text2', completed: true },
+          ],
           status: 200,
         }).as('fetchTodos')
-        cy.goTo('/');
+        cy.goTo('/')
         cy.wait('@fetchTodos')
       })
 
